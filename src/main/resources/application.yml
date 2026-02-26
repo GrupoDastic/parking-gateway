@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: parking-gateway
+
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: nlp
+              uri: http://nlp:8000
+              predicates:
+                - Path=/api/nlp/**
+              filters:
+                - StripPrefix=2
+            - id: api-backend
+              uri: http://api-backend:3000
+              predicates:
+                - Path=/api/parking/**
+              filters:
+                - StripPrefix=2
