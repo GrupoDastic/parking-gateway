@@ -5,6 +5,11 @@ spring:
   application:
     name: parking-gateway
 
+  web:
+    resources:
+      static-locations: classpath:/static/
+      add-mappings: true
+
   cloud:
     gateway:
       server:
